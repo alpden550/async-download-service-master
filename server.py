@@ -37,7 +37,7 @@ async def archivate(request, delay, directory, chunk_byte_size=-10000):
             await response.write(archive_chunk)
             await asyncio.sleep(delay)
     except asyncio.CancelledError:
-        logging.error('Download was interrupted.')
+        logging.warning('Download was interrupted.')
         process.kill()
         raise
     finally:
